@@ -10,15 +10,28 @@ public class blackJack {
     private static List<String> trampList;
     private static List<Integer> numList;
 
+    /**
+     * @return tryNum:tryNum(private static)を参照する
+     */
     public int getTryNum() {
         return tryNum;
     }
+
+    /**
+     * @param tryNum:引数にtryNumを代入することで、tryNumを設定する
+     */
     public void setTryNum(int tryNum) {
         this.tryNum = tryNum;
     }
+    /**
+     * @return trampList:trampList(private static)を参照する
+     */
     public List<String> getTrampList() {
         return trampList;
     }
+    /**
+     * @return numList:numList(private static)を参照する
+     */
     public List<Integer> getNumList() {
         return numList;
     }

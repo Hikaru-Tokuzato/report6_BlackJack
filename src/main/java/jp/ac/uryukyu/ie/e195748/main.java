@@ -1,8 +1,12 @@
 package jp.ac.uryukyu.ie.e195748;
 
+/** @author e195748 */
 
 public class main {
-
+    /**
+     * メインメソッド
+     * @param args
+     */
     public static void main(String[] args) {
         blackJack bj = new blackJack();
         bj.random_tramp();
