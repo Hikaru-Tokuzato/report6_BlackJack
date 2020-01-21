@@ -35,20 +35,22 @@ public class PC extends blackJack {
     public void sum() {
         int sum = 0;
         for (int i = 0; i < pcNumList.size(); i++) {
-            if (21 < sum + pcNumList.get(i)) {
+            sum += pcNumList.get(i);
+            this.sum = sum;
+            if (21 < sum) {
                 if (pcNumList.contains(11)) {
                     for (int j = 0; j < pcNumList.size(); j++) {
-                        if (pcNumList.get(j) == 11) {
+                        if (pcNumList.get(j) == 11 && 21 < sum) {
                             pcNumList.set(j, 1);
                             if (pcNumList.get(j + 1) != pcNumList.size()) {
                                 sum -= 10;
+                                this.sum = sum;
                             }
                         }
                     }
                 }
             }
-            sum += pcNumList.get(i);
-            this.sum = sum;
+
         }
         if (21 < sum) {
             ableContinue = false;
@@ -57,34 +59,6 @@ public class PC extends blackJack {
         }
         if (pcNumList.size() == 2 && sum == 21) {
             bj = true;
-        }
-    }
-
-    public void play(int npcSum){
-        drawCard();
-        drawCard();
-        while (true){
-            if (ableContinue){
-                if (sum != 21) {
-                    System.out.println(String.format("現在,%s引いています", pcList));
-                    System.out.println(String.format("合計は%dです", sum));
-                    System.out.println("選択して下さい\n1:HIT\n2:STAY");
-                    Scanner sc = new Scanner(System.in);
-                    String st = sc.nextLine();
-                    if (st.equals("1")) {
-                        drawCard();
-                    } else if (st.equals("2")){
-                        judge(sum, npcSum);
-                        break;
-                    }
-                } else {
-                    judge(sum, npcSum);
-                    break;
-                }
-            } else {
-                judge(sum, npcSum);
-                break;
-            }
         }
     }
 }

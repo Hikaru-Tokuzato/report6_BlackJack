@@ -31,20 +31,21 @@ public class NPC extends blackJack {
     public void sum() {
         int sum = 0;
         for (int i = 0;i < npcNumList.size();i++){
-            if (21 < sum + npcNumList.get(i)){
+            sum += npcNumList.get(i);
+            this.sum = sum;
+            if (21 < sum){
                 if (npcNumList.contains(11)){
                     for (int j = 0;j < npcNumList.size();j++){
-                        if (npcNumList.get(j) == 11){
+                        if (npcNumList.get(j) == 11 && 21 < sum){
                             npcNumList.set(j,1);
                             if (npcNumList.get(j+1) != npcNumList.size()) {
                                 sum -= 10;
+                                this.sum = sum;
                             }
                         }
                     }
                 }
             }
-            sum += npcNumList.get(i);
-            this.sum = sum;
         }
         if (21 < sum){
             ableContinue = false;
