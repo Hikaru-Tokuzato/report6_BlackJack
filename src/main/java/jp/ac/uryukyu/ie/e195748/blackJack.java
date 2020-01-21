@@ -41,7 +41,7 @@ public class blackJack {
         blackJack.intList = intList;
         Random random = new Random();
         for (int i = 0; i < 52; i++) {
-            intList.add(0);
+            intList.add(i);
         }
         //10000回程入れ替え作業を行う。お好みに変更可能だが、多ければ多い程処理が増す分ランダム性が高い。
         for (int n = 1; n < 10000; n++) {
