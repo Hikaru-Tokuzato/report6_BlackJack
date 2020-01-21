@@ -10,9 +10,7 @@ public class NPC extends blackJack {
     public int sum;
     public boolean ableContinue;
     public boolean bj = false;
-    /**
-     * @param name:mainクラスより引数に設定することで、NPCの名前が設定される
-     */
+
     public NPC(String name) {
         super();
         List<String> pcList = new ArrayList<String>();
