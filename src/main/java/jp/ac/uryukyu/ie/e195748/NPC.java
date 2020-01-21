@@ -7,9 +7,8 @@ public class NPC extends blackJack {
 
     public List<String> npcList;
     public List<Integer> npcNumList;
-    public int sum;
-    public boolean ableContinue;
-    public boolean bj = false;
+    public int npcSum;
+    public boolean npcBj = true;
 
     public NPC(String name) {
         super();
@@ -29,37 +28,35 @@ public class NPC extends blackJack {
     }
 
     public void sum() {
-        int sum = 0;
+        int npcSum = 0;
         for (int i = 0;i < npcNumList.size();i++){
-            sum += npcNumList.get(i);
-            this.sum = sum;
-            if (21 < sum){
+            npcSum += npcNumList.get(i);
+            this.npcSum = npcSum;
+            if (21 < npcSum){
                 if (npcNumList.contains(11)){
                     for (int j = 0;j < npcNumList.size();j++){
-                        if (npcNumList.get(j) == 11 && 21 < sum){
+                        if (npcNumList.get(j) == 11 && 21 < npcSum){
                             npcNumList.set(j,1);
                             if (npcNumList.get(j+1) != npcNumList.size()) {
-                                sum -= 10;
-                                this.sum = sum;
+                                npcSum -= 10;
+                                this.npcSum = npcSum;
                             }
                         }
                     }
                 }
             }
+            bj();
         }
-        if (21 < sum){
-            ableContinue = false;
-        } else {
-            ableContinue = true;
-        }
-        if (npcNumList.size() == 2 && sum == 21){
-            bj = true;
+    }
+    public void bj(){
+        if (npcNumList.size() != 2 || npcSum != 21){
+            this.npcBj = false;
         }
     }
     public void play(){
         drawCard();
         while (true){
-            if (ableContinue && sum <= 17){
+            if (npcSum <= 17){
                 drawCard();
             } else {
                 break;

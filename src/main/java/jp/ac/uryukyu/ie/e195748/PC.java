@@ -11,9 +11,8 @@ public class PC extends blackJack {
 
     public List<String> pcList;
     public List<Integer> pcNumList;
-    public int sum;
-    public boolean ableContinue;
-    public boolean bj = false;
+    public int pcSum;
+    public boolean pcBj = true;
 
     public PC(String name) {
         super();
@@ -21,7 +20,7 @@ public class PC extends blackJack {
         List<Integer> pcNumList = new ArrayList<Integer>();
         this.pcList = pcList;
         this.pcNumList = pcNumList;
-        System.out.println(name+"のターン！");
+        System.out.println(name + "のターン！");
     }
 
     @Override
@@ -33,32 +32,58 @@ public class PC extends blackJack {
     }
 
     public void sum() {
-        int sum = 0;
+        int pcSum = 0;
         for (int i = 0; i < pcNumList.size(); i++) {
-            sum += pcNumList.get(i);
-            this.sum = sum;
-            if (21 < sum) {
+            pcSum += pcNumList.get(i);
+            this.pcSum = pcSum;
+            if (21 < pcSum) {
                 if (pcNumList.contains(11)) {
                     for (int j = 0; j < pcNumList.size(); j++) {
-                        if (pcNumList.get(j) == 11 && 21 < sum) {
+                        if (pcNumList.get(j) == 11 && 21 < pcSum) {
                             pcNumList.set(j, 1);
                             if (pcNumList.get(j + 1) != pcNumList.size()) {
-                                sum -= 10;
-                                this.sum = sum;
+                                pcSum -= 10;
+                                this.pcSum = pcSum;
                             }
                         }
                     }
                 }
             }
+        bj();
+        }
+    }
 
+    public void bj(){
+        if (pcNumList.size() != 2 || pcSum != 21) {
+            pcBj = false;
         }
-        if (21 < sum) {
-            ableContinue = false;
-        } else {
-            ableContinue = true;
-        }
-        if (pcNumList.size() == 2 && sum == 21) {
-            bj = true;
+    }
+
+    public void play(int npcSum,boolean npcBj) {
+        drawCard();
+        drawCard();
+        while (true) {
+            if (pcSum != 21) {
+                if (pcSum < 21) {
+                    System.out.println(String.format("現在,%s引いています", pcList));
+                    System.out.println(String.format("合計は%dです", pcSum));
+                    System.out.println("選択して下さい\n1:HIT\n2:STAY");
+                    Scanner sc = new Scanner(System.in);
+                    String st = sc.nextLine();
+                    if (st.equals("1")) {
+                        drawCard();
+                    } else if (st.equals("2")) {
+                        judge(pcSum,npcSum,pcBj,npcBj);
+                        break;
+                    }
+                } else {
+                    judge(pcSum, npcSum, false,npcBj);
+                    break;
+                }
+            } else {
+                judge(pcSum, npcSum, false,npcBj);
+                break;
+            }
         }
     }
 }

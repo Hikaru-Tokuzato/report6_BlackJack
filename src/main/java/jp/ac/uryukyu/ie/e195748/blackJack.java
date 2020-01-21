@@ -107,26 +107,37 @@ public class blackJack {
     public void drawCard() {
     }
 
-    public void judge(int pcSum, int npcSum) {
+    public void judge(int pcSum, int npcSum,boolean pcBj,boolean npcBj) {
         /* 勝利条件は、PCが21以下の時NPCよりも数が多ければ良い。
          * 但し、BJ（ブラックジャック）{10,J,Q,K + A}が最高であり、ディーラーが優先である。
          */
-        if (pcSum <= 21) {
-            if (npcSum <= 21) {
-                if (pcSum > npcSum) {
-                    System.out.println("YOU WIN");
-                } else if (pcSum == npcSum) {
-                    System.out.println("DRAW");
+        if (pcBj && npcBj){
+            System.out.println("YOU BJ");
+            System.out.println("NPC BJ");
+            System.out.println("YOU Lose");
+        } else if (pcBj){
+            System.out.println("YOU BJ");
+            System.out.println("YOU WIN");
+        } else if (npcBj){
+            System.out.println();
+        } else {
+            if (pcSum <= 21) {
+                if (npcSum <= 21) {
+                    if (pcSum > npcSum) {
+                        System.out.println("YOU WIN");
+                    } else if (pcSum == npcSum) {
+                        System.out.println("DRAW");
+                    } else {
+                        System.out.println("YOU LOSE");
+                    }
                 } else {
-                    System.out.println("YOU LOSE");
+                    System.out.println("NPC BUST");
+                    System.out.println("YOU WIN");
                 }
             } else {
-                System.out.println("NPC BUST");
-                System.out.println("YOU WIN");
+                System.out.println("YOU BUST");
+                System.out.println("YOU LOSE");
             }
-    } else {
-        System.out.println("YOU BUST");
-        System.out.println("YOU LOSE");
         }
     }
 }
