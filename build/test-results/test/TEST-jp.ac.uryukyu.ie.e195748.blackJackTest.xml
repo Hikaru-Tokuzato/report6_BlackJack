@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="jp.ac.uryukyu.ie.e195748.blackJackTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-01-21T05:22:03" hostname="MacBook.local" time="0.028">
+  <properties/>
+  <testcase name="trumpCard()" classname="jp.ac.uryukyu.ie.e195748.blackJackTest" time="0.028"/>
+  <system-out><![CDATA[[joker]
+[0]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
